@@ -2,7 +2,6 @@ import {categorias} from '../data/categorias'
 import SidebarLink from './SidebarLink';
 import PrimaryButton from '../components/PrimaryButton';
 export default function Sidebar() {
-    console.log(categorias)
     return (
         <aside
             id="sidebar"

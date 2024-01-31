@@ -4,6 +4,7 @@ import Dashboard from './pages/Dashboard';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Default from './layouts/default';
+import Productos from './pages/Productos';
 const router = createBrowserRouter([
     {
         path: '/',
@@ -12,7 +13,7 @@ const router = createBrowserRouter([
             {
                 index: true,
                 path: '/',
-                element: <Dashboard/>
+                element: <Productos />
             },
         ]
     },
