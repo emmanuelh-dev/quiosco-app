@@ -1,10 +1,9 @@
 import {createBrowserRouter} from 'react-router-dom';
-import Default from './layouts/default';
-import AuthLayout from './layouts/login';
-import Inicio from './pages/Inicio';
+import AuthLayout from './layouts/Auth';
 import Dashboard from './pages/Dashboard';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import Default from './layouts/default';
 const router = createBrowserRouter([
     {
         path: '/',
