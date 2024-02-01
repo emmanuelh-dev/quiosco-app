@@ -7,7 +7,7 @@ export default function Resumen() {
     const totalPedido = pedido.length > 0 ? pedido.reduce((total, producto) => total + producto.precio * producto.cantidad, 0) : 0;
     return (
         <aside
-            className={`fixed right-0 bg-white w-full max-w-[30rem] p-4 h-screen border-l border-gray-200 ${ !showResume && "hidden" }`} >
+            className={`fixed right-0 bg-white  max-w-[30rem] p-4 h-screen border-l border-gray-200 w-0 transition-width duration-75 ${ !showResume && "w-full" }`} >
               <div  className="max-h-[90vh] overflow-y-scroll">
               <h2 className="text-4xl font-extrabold">Mi pedido</h2>
               <div>
