@@ -9,17 +9,21 @@ function QuioscoProvider({ children }) {
     const [categoriaActiva, setCategoriaActiva] = useState(categorias[2]);
     const [showCategories, setShowCategories] = useState(false);
     const [showResume, setShowResume] = useState(false);
-
+    const [pedido, setPedido] = useState([]);
     const handleCategoria = categoria => {
         setCategoriaActiva(categoria);
     }
     const handleShowResume = () => {
-        console.log(showResume);
         setShowResume(!showResume);
     }
     const handleShowCategorias = () => {
-        console.log(showCategories);
         setShowCategories(!showCategories);
+    }
+    const handleSetPedidos = (producto) => {
+        setPedido([...pedido, producto])
+    }
+    const handleLimpiarOrden = ()=>{
+        setPedido([]);
     }
     return (
         <QuioscoContext.Provider
@@ -30,7 +34,10 @@ function QuioscoProvider({ children }) {
                 showResume,
                 handleShowResume,
                 showCategories,
-                handleShowCategorias
+                handleShowCategorias,
+                handleSetPedidos,
+                pedido,
+                handleLimpiarOrden
             }}
         >
             {children}

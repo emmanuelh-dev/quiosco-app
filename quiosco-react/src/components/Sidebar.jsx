@@ -2,7 +2,7 @@ import SidebarLink from './SidebarLink';
 import PrimaryButton from '../components/PrimaryButton';
 import useQuiosco from '../hooks/useQuiosco';
 export default function Sidebar() {
-    const {categorias, categoriaActiva, showCategories} = useQuiosco();
+    const {categorias, categoriaActiva, showCategories, handleLimpiarOrden} = useQuiosco();
     return (
         <aside
             id="sidebar"
@@ -17,7 +17,7 @@ export default function Sidebar() {
                                     <SidebarLink key={categoria.id} categoria={categoria} active={categoria.id === categoriaActiva.id}/>
                                 )
                             })}
-                        <PrimaryButton className="bg-red-500 hover:bg-red-400">Cancelar Orden</PrimaryButton>
+                        <PrimaryButton onClick={()=>handleLimpiarOrden()} className="bg-red-500 hover:bg-red-400">Cancelar Orden</PrimaryButton>
                     </div>
                 </div>
             </div>
