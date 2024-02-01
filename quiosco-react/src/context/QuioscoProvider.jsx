@@ -20,10 +20,22 @@ function QuioscoProvider({ children }) {
         setShowCategories(!showCategories);
     }
     const handleSetPedidos = (producto) => {
-        setPedido([...pedido, producto])
-    }
+        const existingProductIndex = pedido.findIndex((item) => item.id === producto.id);
+
+        if (existingProductIndex !== -1) {
+          const updatedPedido = [...pedido];
+          updatedPedido[existingProductIndex].cantidad += 1;
+          setPedido(updatedPedido);
+        } else {
+          setPedido([...pedido, { ...producto, cantidad: 1 }]);
+        }
+      };
+
     const handleLimpiarOrden = ()=>{
         setPedido([]);
+    }
+    const handlePedido =()=>{
+        console.log(pedido);
     }
     return (
         <QuioscoContext.Provider
@@ -37,7 +49,8 @@ function QuioscoProvider({ children }) {
                 handleShowCategorias,
                 handleSetPedidos,
                 pedido,
-                handleLimpiarOrden
+                handleLimpiarOrden,
+                handlePedido
             }}
         >
             {children}
