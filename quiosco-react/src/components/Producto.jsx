@@ -5,7 +5,7 @@ export default function Producto({ producto }) {
     const { nombre, precio, imagen, categoria_id, id } = producto;
     const {handleSetPedidos} = useQuiosco();
     return (
-        <div className="bg-white w-full md:max-w-[17rem] rounded-md shadow-md m-4 overflow-clip">
+        <div className="bg-white md:max-w-[20rem] rounded-md shadow-md m-4 overflow-clip">
             <img src={`../img/${imagen}.jpg`} alt={nombre} />
             <div className="p-4">
                 <h3 className="text-2xl font-extrabold">{nombre}</h3>

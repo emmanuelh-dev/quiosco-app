@@ -6,7 +6,7 @@ export default function Sidebar() {
     return (
         <aside
             id="sidebar"
-            className={`fixed  z-20 h-full top-0 left-0 pt-16 flex lg:flex flex-shrink-0 flex-col transition-width duration-75 w-0 ${!showCategories && 'w-full'}`}
+            className={`fixed z-20 h-full top-0 left-0 pt-16 flex lg:flex flex-shrink-0 flex-col transition-width duration-75 w-0 lg:w-80 ${showCategories && 'w-full'}`}
             aria-label="Sidebar"
         >
             <div className="relative flex-1 flex flex-col min-h-0 border-r border-gray-200 bg-white pt-0">
