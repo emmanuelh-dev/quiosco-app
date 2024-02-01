@@ -6,7 +6,7 @@ export default function Producto({ producto }) {
         <div className="bg-white w-full md:max-w-[17rem] rounded-md shadow-md m-4 overflow-clip">
             <img src={`../img/${imagen}.jpg`} alt={nombre} />
             <div className="p-4">
-                <h3 className="text-2xl font-bold">{nombre}</h3>
+                <h3 className="text-2xl font-extrabold">{nombre}</h3>
                 <p className="font-extrabold text-amber-400 text-4xl">
                     ${precio}
                 </p>

@@ -1,7 +1,9 @@
-import {categorias} from '../data/categorias'
 import SidebarLink from './SidebarLink';
 import PrimaryButton from '../components/PrimaryButton';
+import useQuiosco from '../hooks/useQuiosco';
 export default function Sidebar() {
+    const {categorias, categoriaActiva} = useQuiosco();
+    console.log(categoriaActiva)
     return (
         <aside
             id="sidebar"
@@ -11,9 +13,9 @@ export default function Sidebar() {
             <div className="relative flex-1 flex flex-col min-h-0 border-r border-gray-200 bg-white pt-0">
                 <div className="flex-1 flex flex-col pt-5 pb-4 overflow-y-auto">
                     <div className="flex-1 px-3 bg-white space-y-3">
-                        {categorias.map(({nombre, id, icono}) => {
+                        {categorias.map((categoria) => {
                                 return(
-                                    <SidebarLink key={id} to={icono} icono={icono} categoria={nombre}/>
+                                    <SidebarLink key={categoria.id} categoria={categoria} active={categoria.id === categoriaActiva.id}/>
                                 )
                             })}
                         <PrimaryButton className="bg-red-500 hover:bg-red-400">Cancelar Orden</PrimaryButton>
