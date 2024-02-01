@@ -7,9 +7,14 @@ const QuioscoContext = createContext();
 function QuioscoProvider({ children }) {
     const [categorias, setCategorias] = useState(categoriasDB);
     const [categoriaActiva, setCategoriaActiva] = useState(categorias[2]);
+    const [showResume, setShowResume] = useState(false);
 
     const handleCategoria = categoria => {
         setCategoriaActiva(categoria);
+    }
+    const handleShowResume = () => {
+        console.log(showResume);
+        setShowResume(!showResume);
     }
     return (
         <QuioscoContext.Provider
@@ -17,6 +22,8 @@ function QuioscoProvider({ children }) {
                 categorias,
                 categoriaActiva,
                 handleCategoria,
+                showResume,
+                handleShowResume,
             }}
         >
             {children}
