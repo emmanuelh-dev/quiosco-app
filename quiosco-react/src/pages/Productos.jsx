@@ -14,7 +14,7 @@ export default function Productos() {
 
     return (
         <div className="flex">
-            <div className=" lg:max-w-[82rem]">
+            <div className="">
                 <div className="flex flex-wrap gap-4 items-center justify-center">
                     {productos.map((producto) => {
                         return (
