@@ -1,6 +1,6 @@
 import React from "react";
 import { TiDelete } from "react-icons/ti";
-import useQuiosco from "../hooks/useQUiosco";
+import useQuiosco from "../hooks/useQuiosco";
 
 export default function ProductoMini({ producto }) {
     const { handleDelete } = useQuiosco();

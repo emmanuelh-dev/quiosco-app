@@ -1,4 +1,4 @@
-import useQuiosco from "../hooks/useQUiosco";
+import useQuiosco from "../hooks/useQuiosco";
 import PrimaryButton from "./PrimaryButton";
 import ProductoMini from "./ProductoMini";
 

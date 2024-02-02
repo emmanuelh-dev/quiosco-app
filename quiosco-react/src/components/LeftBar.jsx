@@ -1,5 +1,5 @@
 import { MdMenuOpen } from "react-icons/md";
-import useQuiosco from "../hooks/useQUiosco";
+import useQuiosco from "../hooks/useQuiosco";
 
 export default function LeftBar() {
 
