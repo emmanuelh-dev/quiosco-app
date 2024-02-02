@@ -1,12 +1,11 @@
 import { createContext, useState } from "react";
-import { categorias as categoriasDB } from "../data/categorias";
 import { useEffect } from "react";
-
+import axiosInstance from "../../config/axios";
 const QuioscoContext = createContext();
 
 function QuioscoProvider({ children }) {
-    const [categorias, setCategorias] = useState(categoriasDB);
-    const [categoriaActiva, setCategoriaActiva] = useState(categorias[2]);
+    const [categorias, setCategorias] = useState([]);
+    const [categoriaActiva, setCategoriaActiva] = useState({});
     const [showCategories, setShowCategories] = useState(false);
     const [showResume, setShowResume] = useState(false);
     const [pedido, setPedido] = useState([]);
@@ -40,6 +39,23 @@ function QuioscoProvider({ children }) {
     const handlePedido =()=>{
         console.log(pedido);
     }
+
+
+
+
+    const obtenerCategorias = async ()=> {
+        try {
+            const {data} = await axiosInstance('/categorias');
+            setCategorias(data.data);
+            setCategoriaActiva(data.data[0]);
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    useEffect(()=>{
+        obtenerCategorias();
+    },[])
     return (
         <QuioscoContext.Provider
             value={{
