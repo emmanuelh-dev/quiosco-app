@@ -8,7 +8,7 @@ export default function Default() {
                 <div className="flex overflow-hidden bg-white pt-16">
                     <div
                         id="main-content"
-                        className="h-full w-full bg-white relative overflow-y-auto"
+                        className="h-full w-full bg-white relative overflow-y-auto py-16"
                     >
                         <Outlet/>
                     </div>

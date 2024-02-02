@@ -38,6 +38,7 @@ function QuioscoProvider({ children }) {
         setPedido([]);
     }
     const handlePedido =()=>{
+        console.log(pedido);
     }
     return (
         <QuioscoContext.Provider

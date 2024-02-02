@@ -14,7 +14,7 @@ export default function Resumen() {
               )
             : 0;
     return (
-        <aside id="sidebar" className={`fixed z-20 h-full top-0 right-0 pt-16 flex lg:flex flex-shrink-0 flex-col transition-width duration-75 w-0 lg:w-80 ${showResume && "w-full"}`} aria-label="Sidebar"
+        <aside id="sidebar" className={`fixed z-20 h-full top-0 right-0 pt-16 flex lg:flex flex-shrink-0 flex-col transition-width duration-75 w-0 ${showResume && "w-full lg:w-80"}`} aria-label="Sidebar"
         >
             <div className="relative flex-1 flex flex-col min-h-0 border-r border-gray-200 bg-white p-4">
                 <h2 className="text-4xl font-extrabold">Mi pedido</h2>
