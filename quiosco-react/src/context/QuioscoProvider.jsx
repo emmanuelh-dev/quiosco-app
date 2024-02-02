@@ -29,13 +29,15 @@ function QuioscoProvider({ children }) {
         } else {
           setPedido([...pedido, { ...producto, cantidad: 1 }]);
         }
-      };
-
+    };
+    const handleDelete = (id) => {
+        const updatedPedido = pedido.filter((item) => item.id !== id);
+        setPedido(updatedPedido);
+    }
     const handleLimpiarOrden = ()=>{
         setPedido([]);
     }
     const handlePedido =()=>{
-        console.log(pedido);
     }
     return (
         <QuioscoContext.Provider
@@ -50,7 +52,8 @@ function QuioscoProvider({ children }) {
                 handleSetPedidos,
                 pedido,
                 handleLimpiarOrden,
-                handlePedido
+                handlePedido,
+                handleDelete
             }}
         >
             {children}
