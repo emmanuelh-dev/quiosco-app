@@ -1,9 +1,9 @@
+import { useEffect } from "react";
 import Producto from "../components/Producto";
 import Resumen from "../components/Resumen";
 import useQuiosco from "../hooks/useQuiosco";
 import useSWR from "swr";
 
-import { useEffect } from "react";
 import axiosInstance from "../config/axios";
 
 export default function Inicio() {
