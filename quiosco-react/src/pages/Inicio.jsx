@@ -4,7 +4,7 @@ import useQuiosco from "../hooks/useQuiosco";
 import useSWR from "swr";
 
 import { useEffect } from "react";
-import axiosInstance from "../../config/axios";
+import axiosInstance from "../config/axios";
 
 export default function Inicio() {
     const { categoriaActiva } = useQuiosco();

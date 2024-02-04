@@ -1,6 +1,6 @@
 import { createContext, useState } from "react";
 import { useEffect } from "react";
-import axiosInstance from "../../config/axios";
+import axiosInstance from "../config/axios";
 const QuioscoContext = createContext();
 
 function QuioscoProvider({ children }) {
