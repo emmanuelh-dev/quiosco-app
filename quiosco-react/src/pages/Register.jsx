@@ -4,11 +4,14 @@ import PrimaryButton from "../components/PrimaryButton";
 import {Link} from "react-router-dom";
 import axiosInstance from "../config/axios";
 import { useState } from "react";
-
+import { useAuth } from "../hooks/useAuth";
 export default function Register() {
 
   const [errores, setErrores] = useState({});
-
+  const {register} = useAuth({
+    middleware: 'guest',
+    url: '/'
+  })
   const handleSubmit = async (e) => {
 
     e.preventDefault();
@@ -19,12 +22,8 @@ export default function Register() {
       password: document.querySelector('#password').value,
       password_confirmation: document.querySelector('#password_confirmation').value,
     }
-    try{
-      const respuesta = await axiosInstance.post('/register', datos);
-      console.log(respuesta);
-    } catch(error){
-      setErrores(Object.values(error.response.data.errors));
-    }
+    register(datos, setErrores);
+
   }
 
   return (

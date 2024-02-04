@@ -6,11 +6,7 @@ import useSWR from "swr";
 export const useAuth = ({ middleware, url }) => {
     const token = localStorage.getItem("AUTH_TOKEN");
     const navigate = useNavigate();
-    const {
-        data: user,
-        error,
-        mutate,
-    } = useSWR("/user", () =>
+    const { data: user, error, mutate, } = useSWR("/user", () =>
         axiosInstance("/user", {
             headers: {
                 Authorization: `Bearer ${token}`,
@@ -21,6 +17,7 @@ export const useAuth = ({ middleware, url }) => {
                 throw Error(error?.response?.data?.errors);
             })
     );
+
     const login = async (datos, setErrores) => {
         try {
             const { data } = await axiosInstance.post("/login", datos);
@@ -32,6 +29,7 @@ export const useAuth = ({ middleware, url }) => {
             setErrores(Object.values(error.response.data.errors));
         }
     };
+
     useEffect(() => {
         if (middleware === "guest" && url && user) {
             navigate(url);
@@ -41,7 +39,16 @@ export const useAuth = ({ middleware, url }) => {
         }
     }, [user, error]);
 
-    const register = () => {};
+    const register = async (datos, setErrores) => {
+      try{
+        const {data} = await axiosInstance.post('/register', datos);
+        localStorage.setItem('AUTH_TOKEN', data.token);
+        setErrores([]);
+        await mutate();
+      } catch(error){
+        setErrores(Object.values(error.response.data.errors));
+      }
+    };
     const logout = async () => {
         try {
             await axiosInstance.post("/logout",null,{ headers: { Authorization: `Bearer ${token}`, },} );
