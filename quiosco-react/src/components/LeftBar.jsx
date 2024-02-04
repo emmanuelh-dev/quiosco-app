@@ -8,7 +8,8 @@ import { TbLogout2 } from "react-icons/tb";
 export default function LeftBar() {
 
     const {handleShowResume, handleShowCategorias} = useQuiosco();
-    const {user, logout} = useAuth({middleware:'auth'})
+    const {user, logout} = useAuth({middleware:'auth'});
+
     return (
         <nav className="bg-white border-b border-gray-200 fixed z-30 w-full">
             <div className="px-3 py-3 lg:px-5 lg:pl-3">
@@ -30,7 +31,7 @@ export default function LeftBar() {
                             <MdMenuOpen className="size-7" />
                         </button>
                         <div className="flex items-center">
-                            <Avatar name={user} className="rounded-full" size="30"/>
+                            <Avatar name={user.name} className="rounded-full" size="30"/>
                             <button onClick={()=>logout()}><TbLogout2 className="size-7 ml-4"/></button>
                         </div>
                     </div>
