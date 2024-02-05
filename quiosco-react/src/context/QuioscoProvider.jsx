@@ -1,14 +1,23 @@
 import { createContext, useState } from "react";
 import { useEffect } from "react";
 import axiosInstance from "../config/axios";
+import toast, { Toaster } from 'react-hot-toast';
 const QuioscoContext = createContext();
 
 function QuioscoProvider({ children }) {
+    const TOKEN = localStorage.getItem('AUTH_TOKEN');
     const [categorias, setCategorias] = useState([]);
     const [categoriaActiva, setCategoriaActiva] = useState({});
     const [showCategories, setShowCategories] = useState(false);
     const [showResume, setShowResume] = useState(false);
     const [pedido, setPedido] = useState([]);
+    const [total, setTotal] = useState(0);
+
+    const calcularTotal = ()=>{
+        const totalPedido = pedido.reduce( (total, producto) => total + producto.precio * producto.cantidad, 0 );
+        setTotal(totalPedido);
+    }
+
     const handleCategoria = categoria => {
         setCategoriaActiva(categoria);
     }
@@ -39,7 +48,16 @@ function QuioscoProvider({ children }) {
     const handlePedido =()=>{
         console.log(pedido);
     }
-
+    const handleSubmitNuevaOrden = async()=>{
+        try{
+            await axiosInstance.post('/pedidos',{
+                total,
+                pedido: pedido.map(producto=>({producto_id:producto.id, cantidad:producto.cantidad}))
+            }, {headers: { Authorization: `Bearer ${TOKEN}`}}).then((response)=>toast.success(response.data.message));
+        } catch(err){
+            console.error(err);
+        }
+    }
 
 
 
@@ -56,6 +74,10 @@ function QuioscoProvider({ children }) {
     useEffect(()=>{
         obtenerCategorias();
     },[])
+    useEffect(()=>{
+        calcularTotal();
+    },[pedido])
+
     return (
         <QuioscoContext.Provider
             value={{
@@ -70,7 +92,9 @@ function QuioscoProvider({ children }) {
                 pedido,
                 handleLimpiarOrden,
                 handlePedido,
-                handleDelete
+                handleDelete,
+                total,
+                handleSubmitNuevaOrden
             }}
         >
             {children}
