@@ -6,6 +6,7 @@ import Inicio from './pages/Inicio';
 import Dashboard from './pages/Dashboard';
 import AdminLayout from './layouts/AdminLayout';
 import Default from './layouts/Default';
+import Disponibilidad from './pages/Disponibilidad';
 const router = createBrowserRouter([
     {
         path: '/',
@@ -43,7 +44,7 @@ const router = createBrowserRouter([
             },
             {
                 path:'/admin/productos',
-                element: <Dashboard/>
+                element: <Disponibilidad/>
             }
         ]
     }

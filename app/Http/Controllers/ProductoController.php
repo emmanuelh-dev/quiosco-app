@@ -36,8 +36,10 @@ class ProductoController extends Controller
      * Update the specified resource in storage.
      */
     public function update(Request $request, Producto $producto)
-    {
-        //
+    {   
+        $producto->disponible = 0;
+        $producto->save();
+        return ['message'=>'Producto actualizado correctamente'];
     }
 
     /**

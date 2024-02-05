@@ -45,15 +45,22 @@ function QuioscoProvider({ children }) {
     const handleLimpiarOrden = ()=>{
         setPedido([]);
     }
-    const handlePedido =()=>{
-        console.log(pedido);
-    }
+
     const handleSubmitNuevaOrden = async()=>{
         try{
             await axiosInstance.post('/pedidos',{
                 total,
                 pedido: pedido.map(producto=>({producto_id:producto.id, cantidad:producto.cantidad}))
-            }, {headers: { Authorization: `Bearer ${TOKEN}`}}).then((response)=>toast.success(response.data.message));
+            }, {headers: { Authorization: `Bearer ${TOKEN}`}}).then((response)=>toast.success(response.data.message)).then(setPedido([]));
+        } catch(err){
+            console.error(err);
+        }
+    }
+    const handleDesactivarProducto = async(producto)=>{
+        const {id} = producto;
+        try{
+            console.log(producto);
+            await axiosInstance.put('/productos/'+ id,{id}, {headers: { Authorization: `Bearer ${TOKEN}`}}).then((response)=>toast.success(response.data.message));
         } catch(err){
             console.error(err);
         }
@@ -65,7 +72,7 @@ function QuioscoProvider({ children }) {
 
     const obtenerCategorias = async ()=> {
         try {
-            const {data} = await axiosInstance('/categorias');
+            const {data} = await axiosInstance('/categorias', {headers: {Authorization: `Bearer ${TOKEN}`}});
             setCategorias(data.data);
             setCategoriaActiva(data.data[0]);
         } catch (error) {
@@ -93,11 +100,11 @@ function QuioscoProvider({ children }) {
                 handleSetPedidos,
                 pedido,
                 handleLimpiarOrden,
-                handlePedido,
                 handleDelete,
                 total,
                 handleSubmitNuevaOrden,
-                handleEntregado
+                handleEntregado,
+                handleDesactivarProducto
             }}
         >
             {children}

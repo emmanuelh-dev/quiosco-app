@@ -8,8 +8,8 @@ import axiosInstance from "../config/axios";
 
 export default function Inicio() {
     const { categoriaActiva } = useQuiosco();
-
-    const fetcher = () => axiosInstance('productos').then(data => data.data);
+    const TOKEN = localStorage.getItem("AUTH_TOKEN");
+    const fetcher = () => axiosInstance('productos', {headers: {Authorization: `Bearer ${TOKEN}`}}).then(data => data.data);
 
     // SWR
     const { data, error, isLoading } = useSWR('productos', fetcher, {
@@ -34,7 +34,7 @@ export default function Inicio() {
                 <div className="flex flex-wrap gap-4 items-center justify-center">
                     {productos.map((producto) => {
                         return (
-                            <Producto key={producto.id} producto={producto} />
+                            <Producto key={producto.id} producto={producto} botonAgregar/>
                         );
                     })}
                 </div>
