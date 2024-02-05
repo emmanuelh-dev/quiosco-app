@@ -31,8 +31,17 @@ export const useAuth = ({ middleware, url }) => {
     };
 
     useEffect(() => {
-        if (middleware === "guest" && url && user) {
+        if (middleware === "guest" && url && user ) {
             navigate(url);
+        }
+        if (middleware === "guest"  && user && user.admin) {
+            navigate('/admin/dashboard');
+        }
+        if (middleware === "auth" && user && user.admin) {
+            navigate('/admin/dashboard');
+        }
+        if (middleware === "auth" && user && !user.admin) {
+            navigate('/');
         }
         if (middleware === "auth" && error) {
             navigate("/auth/login");
