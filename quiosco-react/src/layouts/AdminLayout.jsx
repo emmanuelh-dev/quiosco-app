@@ -1,7 +1,5 @@
 import { Link, Outlet } from "react-router-dom";
-import Sidebar from "../components/Sidebar";
 import { useAuth } from "../hooks/useAuth";
-import * as NavigationMenu from "@radix-ui/react-navigation-menu";
 import { MdMenuOpen } from "react-icons/md";
 
 function TopMenu() {
@@ -22,14 +20,32 @@ function TopMenu() {
                         </a>
                     </div>
                     <div className="flex items-center">
-                      <Link to={'/admin/productos'}>Productos</Link>
+
                     </div>
                 </div>
             </div>
         </nav>
     );
 }
-
+function Sidebar(){
+    return(
+        <aside
+        id="sidebar"
+        className={`fixed z-20 h-full top-0 left-0 pt-16 flex lg:flex flex-shrink-0 flex-col transition-width duration-75 w-64`}
+        aria-label="Sidebar"
+    >
+        <div className="relative flex-1 flex flex-col min-h-0 border-r border-gray-200 bg-white pt-0">
+            <div className="flex-1 flex flex-col pt-5 pb-4 overflow-y-auto">
+                <div className="flex-1 px-3 bg-white space-y-3">
+                <Link className="text-base text-gray-900 font-bold rounded-md items-center p-2 hover:bg-amber-400 hover:text-white group flex gap-4 w-full py-4" to={'/admin/dashboard'}>Inicio</Link>
+                <Link className="text-base text-gray-900 font-bold rounded-md items-center p-2 hover:bg-amber-400 hover:text-white group flex gap-4 w-full py-4" to={'/admin/productos'}>Productos</Link>
+                <Link className="text-base text-gray-900 font-bold rounded-md items-center p-2 hover:bg-amber-400 hover:text-white group flex gap-4 w-full py-4" to={'/admin/pedidos'}>Pedidos</Link>
+                </div>
+            </div>
+        </div>
+    </aside>
+    )
+}
 export default function AdminLayout() {
     const { user, error } = useAuth({
         middleware: "auth",
