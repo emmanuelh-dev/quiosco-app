@@ -58,7 +58,9 @@ function QuioscoProvider({ children }) {
             console.error(err);
         }
     }
-
+    const handleEntregado = async(id)=>{
+        await axiosInstance.put('/pedidos/'+id, {status: 1}, {headers: {Authorization: `Bearer ${TOKEN}`}})
+    }
 
 
     const obtenerCategorias = async ()=> {
@@ -94,7 +96,8 @@ function QuioscoProvider({ children }) {
                 handlePedido,
                 handleDelete,
                 total,
-                handleSubmitNuevaOrden
+                handleSubmitNuevaOrden,
+                handleEntregado
             }}
         >
             {children}
