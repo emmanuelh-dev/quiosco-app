@@ -31,8 +31,8 @@ export default function LeftBar() {
                             <MdMenuOpen className="size-7" />
                         </button>
                         <div className="flex items-center">
-                            <Avatar name={user.name} className="rounded-full" size="30"/>
-                            <button onClick={()=>logout()}><TbLogout2 className="size-7 ml-4"/></button>
+                            <Avatar name={user?.name} className="rounded-full mr-4" size="30"/>
+                            <button onClick={()=>logout()}><TbLogout2 className="size-7"/></button>
                         </div>
                     </div>
                 </div>
